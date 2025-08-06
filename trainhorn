@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Гудок поезда</title>
+</head>
+<body>
+  <h1>🚂 Гудок поезда</h1>
+  <p>Если звук не воспроизвелся автоматически — нажмите кнопку ниже.</p>
+
+  <audio id="trainHorn" src="gudok-poezda.mp3" autoplay muted></audio>
+
+  <script>
+    const audio = document.getElementById("trainHorn");
+    audio.muted = false;
+    const play = audio.play();
+
+    if (play !== undefined) {
+      play.catch(err => {
+        console.warn("Автозапуск заблокирован:", err);
+        const btn = document.createElement("button");
+        btn.textContent = "▶️ Включить звук";
+        btn.style.fontSize = "20px";
+        btn.style.padding = "10px";
+        btn.style.marginTop = "20px";
+        btn.onclick = () => audio.play();
+        document.body.appendChild(btn);
+      });
+    }
+  </script>
+</body>
+</html>
